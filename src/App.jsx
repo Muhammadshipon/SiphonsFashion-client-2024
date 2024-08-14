@@ -1,5 +1,6 @@
 
 import './App.css'
+import Banner from './components/Banner'
 import Navbar from './components/Navbar'
 
 function App() {
@@ -7,8 +8,11 @@ function App() {
 
   return (
    <div className='font-inter'>
-                              {/* navbar  */}
-   <Navbar></Navbar>                           
+                              {/* hero section  */}
+   <section>
+   <Navbar></Navbar>
+   <Banner></Banner>
+    </section>                           
    </div>
   )
 }
