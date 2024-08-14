@@ -29,7 +29,7 @@ const Navbar = () => {
     </div>
     <div className="navbar-end relative pr-8 top-2">
     <MdShoppingCartCheckout className="text-orange-400 text-3xl" />
-     <div className="bg-white w-7 h-7 rounded-full flex justify-center items-center relative right-3 bottom-4 text-orange-500"><span>17</span></div>
+     <div className="bg-white w-6 h-6 rounded-full flex justify-center items-center relative right-3 bottom-4 text-orange-500"><span>17</span></div>
     </div>
    
   </div>
