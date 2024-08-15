@@ -30,7 +30,7 @@ const ProductCard = ({product,setOpenModal,setIdForAddToCart,setIdForDetails}) =
     <div
       onMouseEnter={() => setIsHover(true)}
       onMouseLeave={() => setIsHover(false)}
-      className="relative max-w-96"
+      className="relative max-w-96 border rounded-2xl"
     >
       {isHover&&<div className="w-full"><button className="absolute top-14 left-24 md:left-28 z-50  bg-orange-500 px-10 py-3 rounded-2xl text-white"><span className="text-xl font-serif">{discount*100}</span>% OFF</button></div> }
       <div className="card bg-base-100 shadow-xl hover:opacity-30 transition-opacity duration-300 ease-in-out h-full flex flex-col">

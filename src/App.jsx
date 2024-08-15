@@ -7,6 +7,7 @@ import ProductDetailsModal from './components/ProductDetailsModal'
 import ProductsFeaturesSection from './components/ProductsFeaturesSection'
 import Cart from './components/Cart'
 import AboutUs from './components/AboutUs'
+import Reviews from './components/Reviews'
 
 function App() {
             
@@ -106,13 +107,22 @@ useEffect(() => {
     
 
                              {/* Products section */}
-   <section className='my-20 flex justify-center items-center'>
-    <ProductsFeaturesSection 
+   <section className='my-20 '>
+                                  {/* title  */}
+  <div className="text-center max-w-[300px] md:max-w-[400px] mx-auto mb-10 mt-24">
+      <h4 className="text-orange-500 font-bold mb-2 text-lg md:text-2xl">Our Products</h4>
+      <h2 className="md:text-3xl text-xl py-3 font-bold text-gray-400 border-y-4 border-gray-400">We Make You Awesome</h2>
+    </div>                           
+         <div className='flex justify-center items-center'>
+                       <ProductsFeaturesSection 
      setIdForDetails={setIdForDetails} 
      setOpenModal={setOpenModal}
      setIdForAddToCart={setIdForAddToCart}>
 
-     </ProductsFeaturesSection>
+                        </ProductsFeaturesSection>
+          </div>                         
+    
+                       
     </section>   
     
 
@@ -120,15 +130,31 @@ useEffect(() => {
 
                   {/* About Us Section  */}
         <section>
-                    {/* title */}
+                          {/* title */}
         <div className="text-center max-w-[300px] md:max-w-[600px] mx-auto  mt-24">
       <h4 className="text-orange-500  mb-2  md:text-2xl font-bold">About Us</h4>
       <h2 className="md:text-3xl text-lg py-3 font-bold text-gray-400 border-y-4 border-gray-400">Why People Choose AuraMart ?</h2>
     </div>
-    <AboutUs></AboutUs>
+                       <AboutUs></AboutUs>
           </section>          
        
                            
+
+
+
+                    {/* Customer Reviews Section  */}
+
+<section className='my-32'>
+                               {/* title */}
+   <div className="text-center max-w-[300px] md:max-w-[600px] mx-auto  mt-24">
+      <h4 className="text-orange-500  mb-2  md:text-2xl font-bold">Testimonials</h4>
+      <h2 className="md:text-3xl text-lg py-3 font-bold text-gray-400 border-y-4 border-gray-400">What Our Client Think About Us?</h2>
+    </div>
+                            <Reviews></Reviews>
+</section>
+
+
+
    </div>
   )
 }
