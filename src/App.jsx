@@ -6,6 +6,7 @@ import Navbar from './components/Navbar'
 import ProductDetailsModal from './components/ProductDetailsModal'
 import ProductsFeaturesSection from './components/ProductsFeaturesSection'
 import Cart from './components/Cart'
+import AboutUs from './components/AboutUs'
 
 function App() {
             
@@ -115,6 +116,18 @@ useEffect(() => {
     </section>   
     
 
+
+
+                  {/* About Us Section  */}
+        <section>
+                    {/* title */}
+        <div className="text-center max-w-[300px] md:max-w-[600px] mx-auto  mt-24">
+      <h4 className="text-orange-500  mb-2  md:text-2xl font-bold">About Us</h4>
+      <h2 className="md:text-3xl text-lg py-3 font-bold text-gray-400 border-y-4 border-gray-400">Why People Choose AuraMart ?</h2>
+    </div>
+    <AboutUs></AboutUs>
+          </section>          
+       
                            
    </div>
   )
