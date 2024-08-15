@@ -5,55 +5,115 @@ import Banner from './components/Banner'
 import Navbar from './components/Navbar'
 import ProductDetailsModal from './components/ProductDetailsModal'
 import ProductsFeaturesSection from './components/ProductsFeaturesSection'
+import Cart from './components/Cart'
 
 function App() {
+            
   const [openModal,setOpenModal] = useState(false);
-  const [id,setId] = useState(null);
-  const [product,setProduct] = useState({});
+  const [idForDetails,setIdForDetails] = useState(null);
+  const [idForAddToCart,setIdForAddToCart] =useState(null);
+  const [deleteItemId,setDeleteItemId] =useState(null);
+  const [productDetails,setProductDetails] = useState({});
+  const [cartProducts,setCartProducts]= useState([]);
 
-  const getData = async()=>{
+ 
+
+
+            //  Fetch data for add to cart 
+const getDataForAddToCart = async () => {
+  const res = await fetch('/public/products.json')
+  const data = await res.json();
+  const filterForAddToCart = data.find(item => item.id === idForAddToCart);
+
+  setCartProducts(previous => {
+      const existingProductIndex = previous.findIndex(item => item.id === idForAddToCart);
+      if (existingProductIndex !== -1) {
+          // If the product already exists in the cart, increase the quantity
+          const updatedCart = [...previous];
+          updatedCart[existingProductIndex] = {
+              ...updatedCart[existingProductIndex],
+              quantity: updatedCart[existingProductIndex].quantity + 1,
+          };
+          return updatedCart;
+      } else {
+          // If the product does not exist in the cart, add it with quantity 1
+          return [...previous, { ...filterForAddToCart, quantity: 1 }];
+      }
+  });
+}
+useEffect(() => {
+  if (idForAddToCart !== null) {
+    getDataForAddToCart();
+  }
+ 
+}, [idForAddToCart]);
+
+
+
+                // Fetch data for view product details 
+  const getDataForProductsDetails = async()=>{
     const res = await fetch('/public/products.json')
     const data = await res.json();
-    const [filterProduct] = data.filter(item=>item.id === id)
-      setProduct(filterProduct)
+    
+    const [filterProductDetails] = data.filter(item=>item.id === idForDetails)
+      setProductDetails(filterProductDetails); 
   }
+  useEffect(() => {
+    if (idForDetails !== null) {
+      getDataForProductsDetails();
+    }
+  }, [idForDetails]);
 
-  useEffect(()=>{
-    getData();
-  },[id])
+                // Update cart Data after removing the product 
+  const updatedCartData=()=>{
+    const updatedCart=cartProducts?.filter(item=>item.id !== deleteItemId);
+    setCartProducts(updatedCart)
+  }
+  useEffect(() => {
+    if (deleteItemId !== null) {
+      updatedCartData();
+    }
+  }, [deleteItemId]);
 
-console.log(product);
+  
+
 
   return (
    <div className='font-inter'>
-     {/* Show Product Details Modal Conditionally  */}
+                         {/* Add To Cart Component */}
+    <Cart cartProducts={cartProducts} setDeleteItemId={setDeleteItemId}></Cart>
 
+
+
+
+              {/* Show Product Details Modal Conditionally  */}
      {
-        openModal &&<ProductDetailsModal product={product} setOpenModal={setOpenModal}></ProductDetailsModal>
+        openModal &&<ProductDetailsModal 
+        productDetails={productDetails}
+        setIdForAddToCart={setIdForAddToCart}
+        setOpenModal={setOpenModal}></ProductDetailsModal>
       }
 
 
                               {/* hero section  */}
    <section>
     
-   <Navbar></Navbar>
+   <Navbar cartProducts={cartProducts}></Navbar>
    <Banner></Banner>
     </section>  
 
     
 
                              {/* Products section */}
-   <section className='my-20'>
-    <ProductsFeaturesSection setId={setId} setOpenModal={setOpenModal}></ProductsFeaturesSection>
+   <section className='my-20 flex justify-center items-center'>
+    <ProductsFeaturesSection 
+     setIdForDetails={setIdForDetails} 
+     setOpenModal={setOpenModal}
+     setIdForAddToCart={setIdForAddToCart}>
+
+     </ProductsFeaturesSection>
     </section>   
-    <div className="relative max-w-sm mx-auto bg-white rounded-lg shadow-lg overflow-hidden group">
-  
-  <div className="p-4">
-    <h2 className="text-xl font-semibold">TIRO 21 TRACK PANTS</h2>
-    <p className="text-gray-600">$148</p>
-  </div>
-  
-</div>
+    
 
                            
    </div>

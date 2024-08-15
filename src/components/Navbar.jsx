@@ -2,7 +2,9 @@
 import { MdShoppingCartCheckout } from "react-icons/md";
 
 
-const Navbar = () => {
+const Navbar = ({cartProducts}) => {
+  const totalItem = cartProducts?.reduce((sum,current)=>sum+current.quantity,0)
+  
   const link = <>
      <li >Products</li>
        <li>About Us</li>
@@ -27,11 +29,25 @@ const Navbar = () => {
       {link}
       </ul>
     </div>
-    <div className="navbar-end relative pr-8 top-2">
-    <MdShoppingCartCheckout className="text-orange-400 text-3xl" />
-     <div className="bg-white w-6 h-6 rounded-full flex justify-center items-center relative right-3 bottom-4 text-orange-500"><span>17</span></div>
-    </div>
+                 
+                    {/* Cart button  */}
    
+
+    
+    <div className="drawer-content navbar-end ">
+    <label htmlFor="my-drawer" className=" drawer-button ">
+      <div className="relative pr-8 top-4">
+      <MdShoppingCartCheckout className="text-orange-400 text-3xl" />
+     <div className="bg-white w-6 h-6 rounded-full flex justify-center items-center relative -right-5 bottom-10 text-orange-500 "><span>{
+     totalItem
+     }</span></div>
+        </div> 
+      </label>
+  </div>
+ 
+   
+   
+
   </div>
   );
 };

@@ -3,21 +3,28 @@ import { CiCirclePlus, CiSearch } from "react-icons/ci";
 import ReactStars from "react-rating-stars-component";
 import 'animate.css';
 
-const ProductCard = ({product,setOpenModal,setId}) => {
+const ProductCard = ({product,setOpenModal,setIdForAddToCart,setIdForDetails}) => {
   const {name, img, price,category,ratings,id,discount } = product;
   const [isHover, setIsHover]=useState(false);
   const [showAnimation, setShowAnimation] = useState(false);
   
   const handleShowDetail=(id)=>{
     setOpenModal(true);
-    setId(id);
+    setIdForDetails(id);
   }
 
-  const handleAddToCart = () => {
+  const handleAddToCart = (id) => {
+      // Animation
     setShowAnimation(true);
     setTimeout(() => {
       setShowAnimation(false);
-    }, 1000); // Animation duration
+    }, 1000);  
+
+          // update add to card product 
+    setIdForAddToCart(null); 
+    setTimeout(() => {
+      setIdForAddToCart(id); 
+    }, 0); 
   };
   return (
     <div
@@ -46,10 +53,10 @@ const ProductCard = ({product,setOpenModal,setId}) => {
 
                          {/* Hover Effect functionality  */}
       {isHover && (
-        <div className="absolute hover:text-white rounded-2xl hover:bg-[rgb(0,0,0,0.1)] inset-0 flex justify-center items-center z-40 pointer-events-none">
+        <div className="absolute hover:text-white rounded-2xl hover:bg-[rgb(0,0,0,0.4)] inset-0 flex justify-center items-center z-40 pointer-events-none">
           <div className="flex gap-4 pointer-events-auto">
           <CiSearch onClick={()=>handleShowDetail(id)} className="text-5xl  hover:text-orange-400 hover:scale-125"/>
-          <CiCirclePlus onClick={handleAddToCart} className="text-5xl  hover:text-orange-400 hover:scale-125 "/>
+          <CiCirclePlus onClick={()=>handleAddToCart(id)} className="text-5xl  hover:text-orange-400 hover:scale-125 "/>
          
           {showAnimation && (
         <div className="absolute left-[55%] top-[35%] text-white text-2xl font-bold animate__animated animate__fadeInUp"

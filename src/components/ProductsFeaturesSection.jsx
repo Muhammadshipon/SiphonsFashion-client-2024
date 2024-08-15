@@ -4,7 +4,7 @@ import { GiNextButton, GiPreviousButton } from "react-icons/gi";
 
 
 
-const ProductsFeaturesSection = ({setOpenModal,setId}) => {
+const ProductsFeaturesSection = ({setOpenModal,setIdForDetails,setIdForAddToCart}) => {
   const [products,setProducts]= useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [categoryFilter, setCategoryFilter] = useState('');
@@ -15,7 +15,6 @@ const ProductsFeaturesSection = ({setOpenModal,setId}) => {
   const getData = async()=>{
     const res = await fetch('/public/products.json')
     const data = await res.json();
-      console.log(data);
       setProducts(data)
   }
 
@@ -132,7 +131,11 @@ const handleRatingChange = (event) => {
       key={currentPage}
       >
      {currentProducts.length===0? <p className="text-center my-10">No Product Available....</p>:
-        currentProducts?.map(product=><ProductCard key={product.id} product={product}setOpenModal={setOpenModal} setId={setId}></ProductCard>)
+        currentProducts?.map(product=><ProductCard key={product.id} 
+          product={product}
+          setOpenModal={setOpenModal}
+          setIdForAddToCart={setIdForAddToCart} 
+          setIdForDetails={setIdForDetails}></ProductCard>)
       }
      </div>
                          {/* Pagination Button  */} 
