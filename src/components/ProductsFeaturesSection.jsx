@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
 import ProductCard from "./ProductCard";
-import {GrNext, GrPrevious } from "react-icons/gr";
 import { GiNextButton, GiPreviousButton } from "react-icons/gi";
 
 
-const ProductsFeaturesSection = () => {
+
+const ProductsFeaturesSection = ({setOpenModal,setId}) => {
   const [products,setProducts]= useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [categoryFilter, setCategoryFilter] = useState('');
@@ -22,17 +22,6 @@ const ProductsFeaturesSection = () => {
   useEffect(()=>{
     getData();
   },[])
-
-  // products,categoryFilter,priceRangeFilter,ratingFilter,currentPage,setCategoryFilter,setPriceRangeFilter,setRatingFilter,setProducts
-  // const filteredProducts = products.filter((product) => {
-  //   const categoryMatch = !categoryFilter || product.category === categoryFilter;
-
-  //   const priceMatch = product.price >= priceRangeFilter[0] && product.price <= priceRangeFilter[1];
-
-  //   const ratingMatch = product.ratings >= ratingFilter;
-  
-  //   return categoryMatch && priceMatch && ratingMatch;
-  // }); 
 
 
   let filteredProducts = products;
@@ -87,7 +76,10 @@ const handleRatingChange = (event) => {
 
   return (
     <div>
+                   
          <h1 className="text-4xl font-bold text-center mb-10 text-orange-500">Choose Your Best Products</h1>
+
+         
 
                            {/* Filter Input Section  */}
       <div className=" flex flex-col md:flex-row items-center gap-5 justify-around mb-4">
@@ -140,7 +132,7 @@ const handleRatingChange = (event) => {
       key={currentPage}
       >
      {currentProducts.length===0? <p className="text-center my-10">No Product Available....</p>:
-        currentProducts?.map(product=><ProductCard key={product.id} product={product}></ProductCard>)
+        currentProducts?.map(product=><ProductCard key={product.id} product={product}setOpenModal={setOpenModal} setId={setId}></ProductCard>)
       }
      </div>
                          {/* Pagination Button  */} 
