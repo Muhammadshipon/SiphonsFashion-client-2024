@@ -55,7 +55,7 @@ const Banner = ( ) => {
 
         className="mySwiper"
       >
-          <SwiperSlide><img className='w-full h-[400px] lg:min-h-screen' src="https://facts.net/wp-content/uploads/2022/04/types-of-bags.jpg" alt="" /></SwiperSlide>
+          <SwiperSlide><img  className='w-full h-[400px] lg:min-h-screen' src="https://facts.net/wp-content/uploads/2022/04/types-of-bags.jpg" alt="" loading="lazy" /></SwiperSlide>
      <SwiperSlide><img className='w-full h-[400px] lg:min-h-screen' src="https://thumbs.dreamstime.com/b/nike-sports-shoes-28089948.jpg" alt="" /></SwiperSlide>
 
 

@@ -11,7 +11,7 @@ const AboutUs = () => {
         
   <div className="hero-content flex-col lg:flex-row p-0 md:px-20 text-white  bg-black bg-opacity-50  mt-20 py-20 max-w-[1000px] rounded-t-2xl gap-10">
     
-    <img src='https://images.pexels.com/photos/3768005/pexels-photo-3768005.jpeg?cs=srgb&dl=pexels-willoworld-3768005.jpg&fm=jpg' className="max-w-[300px] md:max-w-md rounded-lg shadow-2xl" />
+    <img src='https://media.istockphoto.com/id/904608448/photo/four-male-coworkers-smiling-to-camera-outside.jpg?s=612x612&w=0&k=20&c=zdQDWiabkcNsrRZTRE3496dJMCi1pyEuqN4n8jw5Tk8=' className="max-w-[300px] md:max-w-md rounded-lg shadow-2xl " />
     <div className="p-4">
       
       <h1 className="text-3xl font-bold text-orange-500">Our Mission</h1>
@@ -24,7 +24,7 @@ const AboutUs = () => {
         
   <div className="hero-content flex-col lg:flex-row-reverse p-0 md:px-20 text-white  bg-black bg-opacity-50 pb-20 max-w-[1000px] rounded-b-2xl gap-10">
     
-    <img src='https://www.nedap-retail.com/app/uploads/2021/02/adidas-shoes.jpg' className="max-w-[300px] md:max-w-md rounded-lg shadow-2xl " />
+    <img src='https://static.timesofisrael.com/www/uploads/2022/10/AP090507054071.jpg' className="max-w-[300px] md:max-w-md rounded-lg shadow-2xl " />
     <div className="px-4">
       
       <h1 className="text-3xl font-bold text-orange-500">Our Values</h1>

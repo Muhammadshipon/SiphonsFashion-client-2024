@@ -8,6 +8,7 @@ import ProductsFeaturesSection from './components/ProductsFeaturesSection'
 import Cart from './components/Cart'
 import AboutUs from './components/AboutUs'
 import Reviews from './components/Reviews'
+import NewsLetter from './components/NewsLetter'
 
 function App() {
             
@@ -128,7 +129,7 @@ useEffect(() => {
 
 
 
-                  {/* About Us Section  */}
+                     {/* About Us Section  */}
         <section>
                           {/* title */}
         <div className="text-center max-w-[300px] md:max-w-[600px] mx-auto  mt-24">
@@ -152,6 +153,17 @@ useEffect(() => {
     </div>
                             <Reviews></Reviews>
 </section>
+
+
+                       {/* Newsletter Form Section  */}
+   <section>
+   
+   
+
+    <NewsLetter></NewsLetter>
+    
+    
+    </section>                    
 
 
 

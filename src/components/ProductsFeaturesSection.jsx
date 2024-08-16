@@ -77,7 +77,7 @@ const handleRatingChange = (event) => {
   return (
     <div>
                      {/* Filter Input Section  */}
-      <div className=" flex flex-col md:flex-row items-center gap-5 justify-around mb-4">
+      <div className=" flex flex-col md:flex-row items-center gap-5 justify-around mb-10">
         <select
           onChange={handleCategoryChange}
           className="px-4 py-2 border rounded"
