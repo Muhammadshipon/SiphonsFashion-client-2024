@@ -6,10 +6,19 @@ const Navbar = ({cartProducts}) => {
   const totalItem = cartProducts?.reduce((sum,current)=>sum+current.quantity,0)
   
   const link = <>
-     <li >Products</li>
-       <li>About Us</li>
-       <li>Reviews</li>
-       <li>Contact</li></>
+  <li  data-aos="fade-down"
+      data-aos-delay="100"
+    data-aos-duration="1000"><a href="#products">Products</a></li>
+  <li  data-aos="fade-down"
+      data-aos-delay="300"
+    data-aos-duration="1000"><a href="#about">About Us</a></li>
+  <li data-aos="fade-down"
+    data-aos-delay="500"
+  data-aos-duration="1000"><a href="#reviews">Reviews</a></li>
+  <li data-aos="fade-down"
+    data-aos-delay="700"
+  data-aos-duration="1000"><a href="#newsletter">Connect</a></li>
+               </>
 
   return (
     <div className="navbar  fixed bg-black w-full z-40 bg-opacity-50">
@@ -22,10 +31,10 @@ const Navbar = ({cartProducts}) => {
     {link}
         </ul>
       </div>
-      <a className="text-3xl font-bold text-white pl-10">Aura<span className="text-orange-500 ">Mart</span></a>
+     <h1><a className="text-3xl font-bold text-white pl-10">Aura<span className="text-orange-500 ">Mart</span></a></h1>
     </div>
     <div className="navbar-center hidden lg:flex">
-      <ul  className="menu menu-horizontal px-1 gap-5 text-white">
+      <ul  className="menu menu-horizontal px-1  text-white">
       {link}
       </ul>
     </div>

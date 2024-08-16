@@ -14,22 +14,22 @@ const Banner = ( ) => {
 <div className=" rounded-[20px]"></div>
   <div className=" text-left text-neutral-content ">
   <div className="max-w-3xl relative top-32 lg:top-44 text-center mx-auto ">
-      <h1   data-aos="fade-up"
-    
-    data-aos-delay="50"
-    data-aos-duration="1000"
+      <h1   data-aos="fade-down"
+         data-aos-delay="200"
+    data-aos-duration="2000"
    className="mb-5 text-2xl text-gray-100 md:text-5xl font-bold font-serif italic">Unleash Your Fashion Potential</h1>
       
-      <p data-aos="fade-in" data-aos-delay="50"  data-aos-duration="1000"   className="mb-5 text-white  md:text-xl ">Discover the latest trends in fashion and accessories</p>
+      <p data-aos="fade-in" data-aos-delay="300"  data-aos-duration="2000"   className="mb-5 text-white  md:text-xl ">Discover the latest trends in fashion and accessories</p>
       <div  className="flex flex-col md:flex-row gap-10 justify-center items-center ">
 
 
   
      
-     <button  data-aos="fade-right"
-         data-aos-delay="50"
-         data-aos-duration="1000"
-       className="bg-orange-500 font-bold px-10 py-2 rounded-full border-b-4 hover:border-b-0 border-orange-700 max-w-[300px]  text-white hover:bg-orange-700 hover:text-white hover:scale-105 mr-5">Check it</button>   
+     <a  href='#products'
+            data-aos="fade-right"
+         data-aos-delay="400"
+         data-aos-duration="2000"
+       className="bg-orange-500 font-bold px-10 py-2 rounded-full border-b-4 hover:border-b-0 border-orange-700 max-w-[300px]  text-white hover:bg-orange-700 hover:text-white hover:scale-105 mr-5">Check it</a>   
     
       
       </div>

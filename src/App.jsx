@@ -9,6 +9,15 @@ import Cart from './components/Cart'
 import AboutUs from './components/AboutUs'
 import Reviews from './components/Reviews'
 import NewsLetter from './components/NewsLetter'
+import Footer from './components/Footer'
+import AOS from 'aos';
+import 'aos/dist/aos.css';
+AOS.init();
+
+
+
+
+
 
 function App() {
             
@@ -108,7 +117,7 @@ useEffect(() => {
     
 
                              {/* Products section */}
-   <section className='my-20 '>
+   <section className='my-20 ' id='products'>
                                   {/* title  */}
   <div className="text-center max-w-[300px] md:max-w-[400px] mx-auto mb-10 mt-24">
       <h4 className="text-orange-500 font-bold mb-2 text-lg md:text-2xl">Our Products</h4>
@@ -130,7 +139,7 @@ useEffect(() => {
 
 
                      {/* About Us Section  */}
-        <section>
+        <section id='about'>
                           {/* title */}
         <div className="text-center max-w-[300px] md:max-w-[600px] mx-auto  mt-24">
       <h4 className="text-orange-500  mb-2  md:text-2xl font-bold">About Us</h4>
@@ -145,7 +154,7 @@ useEffect(() => {
 
                     {/* Customer Reviews Section  */}
 
-<section className='my-32'>
+<section id='reviews' className='my-32'>
                                {/* title */}
    <div className="text-center max-w-[300px] md:max-w-[600px] mx-auto  mt-24">
       <h4 className="text-orange-500  mb-2  md:text-2xl font-bold">Testimonials</h4>
@@ -155,13 +164,13 @@ useEffect(() => {
 </section>
 
 
-                       {/* Newsletter Form Section  */}
-   <section>
+                       {/* Newsletter Form Section and Simple Footer */}
+   <section id='newsletter'>
    
    
 
     <NewsLetter></NewsLetter>
-    
+    <Footer></Footer>
     
     </section>                    
 
