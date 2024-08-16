@@ -25,48 +25,25 @@ AuraMart is a modern e-commerce web application built with React and Vite. It fe
 
 ## Installation
 
-1. **Clone the repository:**
+**Clone the repository:**
 
 ```bash
 git clone https://github.com/your-username/auramart.git
-Navigate to the project directory:
-bash
-Copy code
+
+## Navigate to the project directory:
+```bash
 cd auramart
-Install the dependencies:
-bash
-Copy code
+## Install the dependencies:
+```bash
 npm install
-Start the development server:
-bash
-Copy code
+## Start the development server:
+```bash
 npm run dev
-Open the application in your browser:
-Navigate to http://localhost:3000 to view the app.
+## Open the application in your browser:
+- Navigate to http://localhost:3000 to view the app.
 
-Usage
-Browse Products: Explore the products available in the catalog.
-Filter & Search: Use the filter and search functionalities to find specific products.
-Add to Cart: Click the "Add to Cart" button to add products to your shopping cart.
-View Cart: Check your selected items and proceed to checkout.
-Contributing
-If you'd like to contribute to AuraMart, please follow these steps:
-
-Fork the repository to your GitHub account.
-
-Create a new branch with a descriptive name:
-
-bash
-Copy code
-git checkout -b feature/your-feature-name
-Make your changes and commit them:
-
-bash
-Copy code
-git commit -m "Add some feature"
-Push to the branch:
-
-bash
-Copy code
-git push origin feature/your-feature-name
-Open a pull request and describe your changes.
+# Usage
+- Browse Products: Explore the products available in the catalog.
+- Filter & Search: Use the filter and search functionalities to find specific products.
+- Add to Cart: Click the "Add to Cart" button to add products to your shopping cart.
+-  Cart: Check your selected items and proceed to checkout.
