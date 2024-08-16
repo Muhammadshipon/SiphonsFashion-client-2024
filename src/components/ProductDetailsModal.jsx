@@ -1,4 +1,4 @@
-
+import PropTypes from 'prop-types';
 
 
 const ProductDetailsModal = ({setOpenModal,productDetails={},setIdForAddToCart}) => {
@@ -43,4 +43,20 @@ const ProductDetailsModal = ({setOpenModal,productDetails={},setIdForAddToCart})
   );
 };
 
+// Define PropTypes for ProductDetailsModal component
+ProductDetailsModal.propTypes = {
+  setOpenModal: PropTypes.func.isRequired,
+  productDetails: PropTypes.shape({
+    id: PropTypes.string,
+    name: PropTypes.string,
+    img: PropTypes.string,
+    price: PropTypes.number,
+    category: PropTypes.string,
+    stock: PropTypes.number,
+    discount: PropTypes.number,
+    shortDescription: PropTypes.string,
+    seller: PropTypes.string
+  }),
+  setIdForAddToCart: PropTypes.func.isRequired
+};
 export default ProductDetailsModal;

@@ -9,7 +9,7 @@ import ReviewCard from './ReviewCard';
 const Reviews = () => {
   const [reviews,setReviews] = useState([]);
   const getData = async()=>{
-    const res = await fetch('/public/reviews.json')
+    const res = await fetch('/reviews.json')
     const data = await res.json();
       setReviews(data)
   }

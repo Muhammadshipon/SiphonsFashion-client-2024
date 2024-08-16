@@ -1,4 +1,4 @@
-
+import PropTypes from 'prop-types';
 import { MdShoppingCartCheckout } from "react-icons/md";
 
 
@@ -61,4 +61,12 @@ const Navbar = ({cartProducts}) => {
   );
 };
 
+// Define PropTypes for Navbar component
+Navbar.propTypes = {
+  cartProducts: PropTypes.arrayOf(
+    PropTypes.shape({
+      quantity: PropTypes.number.isRequired,
+    })
+  ).isRequired,
+};
 export default Navbar;

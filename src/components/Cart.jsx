@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import { RiDeleteBinLine } from "react-icons/ri";
 
 
@@ -42,6 +43,19 @@ const Cart = ({cartProducts,setDeleteItemId}) => {
 </div> 
     </div>
   );
+};
+
+// Define PropTypes for Cart component
+Cart.propTypes = {
+  cartProducts: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.string.isRequired,
+      name: PropTypes.string.isRequired,
+      price: PropTypes.number.isRequired,
+      quantity: PropTypes.number.isRequired,
+    })
+  ).isRequired,
+  setDeleteItemId: PropTypes.func.isRequired,
 };
 
 export default Cart;

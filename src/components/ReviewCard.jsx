@@ -1,8 +1,8 @@
-
+import PropTypes from 'prop-types';
 import ReactStars from "react-rating-stars-component";
 
 const ReviewCard = ({comment}) => {
-  const {id, rating, review, img, date, customerName} = comment;
+  const { rating, review, img, date, customerName} = comment;
   return (
     <div className="flex flex-col justify-center max-w-xs p-6 shadow-2xl border rounded-xl sm:px-12  text-gray-800 mb-20">
 	<img src={img} alt="" className="w-32 h-32 mx-auto rounded-full bg-gray-500 aspect-square" />
@@ -20,6 +20,18 @@ const ReviewCard = ({comment}) => {
 	</div>
 </div>
   );
+};
+
+// Define PropTypes for ReviewCard component
+ReviewCard.propTypes = {
+  comment: PropTypes.shape({
+    id: PropTypes.string.isRequired,
+    rating: PropTypes.number.isRequired,
+    review: PropTypes.string.isRequired,
+    img: PropTypes.string.isRequired,
+    date: PropTypes.string.isRequired,
+    customerName: PropTypes.string.isRequired
+  }).isRequired
 };
 
 export default ReviewCard;

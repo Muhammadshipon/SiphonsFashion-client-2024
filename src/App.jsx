@@ -33,7 +33,7 @@ function App() {
 
             //  Fetch data for add to cart 
 const getDataForAddToCart = async () => {
-  const res = await fetch('/public/products.json')
+  const res = await fetch('/products.json')
   const data = await res.json();
   const filterForAddToCart = data.find(item => item.id === idForAddToCart);
 
@@ -64,7 +64,7 @@ useEffect(() => {
 
                 // Fetch data for view product details 
   const getDataForProductsDetails = async()=>{
-    const res = await fetch('/public/products.json')
+    const res = await fetch('/products.json')
     const data = await res.json();
     
     const [filterProductDetails] = data.filter(item=>item.id === idForDetails)

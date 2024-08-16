@@ -1,3 +1,4 @@
+import PropTypes from "prop-types";
 import { useEffect, useState } from "react";
 import ProductCard from "./ProductCard";
 import { GiNextButton, GiPreviousButton } from "react-icons/gi";
@@ -14,7 +15,7 @@ const ProductsFeaturesSection = ({setOpenModal,setIdForDetails,setIdForAddToCart
 
                   // Fetch all products 
   const getData = async()=>{
-    const res = await fetch('/public/products.json')
+    const res = await fetch('/products.json')
     const data = await res.json();
       setProducts(data)
   }
@@ -149,4 +150,10 @@ const handleRatingChange = (event) => {
   );
 };
 
+// Define PropTypes for ProductsFeaturesSection component
+ProductsFeaturesSection.propTypes = {
+  setOpenModal: PropTypes.func.isRequired,
+  setIdForDetails: PropTypes.func.isRequired,
+  setIdForAddToCart: PropTypes.func.isRequired
+};
 export default ProductsFeaturesSection;
