@@ -1,6 +1,7 @@
 import { useState } from "react";
 import LogIn from "./Login";
 import Registration from "./Register";
+import Profile from "./Profile";
 
 
 const NewsLetter = () => {
@@ -70,7 +71,7 @@ const NewsLetter = () => {
          : <Registration showLogin={setShowLogin}></Registration>
       }
     
-    
+    <Profile></Profile>
     </div>
   </div> 
   );

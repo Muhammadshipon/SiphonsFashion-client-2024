@@ -13,6 +13,8 @@ import Footer from './components/Footer'
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 import { MdShoppingCartCheckout } from 'react-icons/md'
+import { ToastContainer } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css';
 
 AOS.init();
 
@@ -187,7 +189,7 @@ useEffect(() => {
     </section>                    
 
 
-
+    <ToastContainer />
    </div>
   )
 }

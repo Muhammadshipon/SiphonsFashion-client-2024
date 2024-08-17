@@ -1,5 +1,5 @@
 
-import { toast } from "react-toastify";
+import { toast, ToastContainer } from "react-toastify";
 import { useContext, useState } from "react";
 import { IoMdEye, IoMdEyeOff } from "react-icons/io";
 import { AuthContext } from "../firebase/provider/AuthProvider";
@@ -45,8 +45,11 @@ const Registration = ({showLogin}) => {
 			toast.success("Sign Up successfully")
     })
     .catch(error=>{
-      console.error(error);
-			toast.error(error.message)
+      console.error(error.code);
+			if(error.code==='auth/email-already-in-use'){
+				toast.error('You Have Already an Account')
+			}
+		
     })
 	}
 
