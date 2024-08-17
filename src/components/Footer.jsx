@@ -2,7 +2,7 @@
 
 const Footer = () => {
   return (
-    <footer className="footer footer-center bg-base-content text-primary-content p-10">
+    <footer className="footer footer-center bg-black text-primary-content p-10">
     <aside>
     <h1><a className="text-3xl font-bold text-white ">Siphon's<span className="text-blue-700 ">Fashion</span></a></h1>
       <p className="font-bold">

@@ -1,92 +1,63 @@
-// import { useContext, useState } from "react";
-// import { Link, useNavigate } from "react-router-dom";
-// import { IoMdEye } from "react-icons/io";
-// import { IoMdEyeOff } from "react-icons/io";
-// import { AuthContext } from "../Provider/AuthProvider";
-// import Swal from "sweetalert2";
-// import { updateProfile } from "firebase/auth";
 
-import { useState } from "react";
+import { toast } from "react-toastify";
+import { useContext, useState } from "react";
 import { IoMdEye, IoMdEyeOff } from "react-icons/io";
+import { AuthContext } from "../firebase/provider/AuthProvider";
+import { updateProfile } from "firebase/auth";
 
 const Registration = ({showLogin}) => {
-  // const {createUser} = useContext(AuthContext);
-  // const navigate = useNavigate();
+ 
+  const {createUser,setUser	} = useContext(AuthContext);
   const [showPassword,setShowPassword] = useState(false);
 
-  // const handleRegister = e=>{
-  //   e.preventDefault();
-  //   const form = e.target;
-  //   const name = form.name.value;
-  //   const email = form.email.value;
-  //   const photo = form.photo.value;
-  //   const password = form.password.value;
-  //   console.log(name,email,photo,password);
+  const handleSignUp = e =>{
+		e.preventDefault();
 
-
-  //   if(!/^(?=.*[a-z])(?=.*[A-Z]).*$/.test(password)){
-      
-  //     Swal.fire({
-  //       title: "Password Type is Wrong",
-  //       text: "Your password should have at least one upperCase and lowerCase character",
-  //       icon: "error"
-  //     });
-  //     return ;
-  //   }
-   
-  //   else if(password.length<6){
-  //     Swal.fire({
-  //       title: "Password Type is Wrong",
-  //       text: "password must be at least 6 character",
-  //       icon: "error"
-  //     });
-  //    return;
-  //   }
-
-
-
-
-
-
-  //   createUser(email,password)
-  //   .then(result=>{
-  //     console.log(result.user);
-   
-  //     // Update Profile 
-  //     updateProfile(result.user, {
-  //       displayName: name, photoURL: photo
-  //     }).then(() => {
-        
-  //     })
-      
-
-  //     Swal.fire({
-  //       title: "Register Successfully",
-  //       text: "Your Registration have done Successfully",
-  //       icon: "success"
-  //     });
-
-  //     form.reset();
-  //     navigate('/');
-      
-  //   })
-  //   .catch(error=>{
-  //     console.log(error.message)
-  //     Swal.fire({
-  //       title: error.message,
+		const name = e.target.name.value;
+		const email = e.target.email.value;
+		const photo = e.target.photo.value;
+		const password = e.target.password.value;
+		console.log(name,email,photo,password)
        
-  //       icon: "error"
-  //     });
-  //   })
+        //  handle error 
+    if(!/^(?=.*[a-z])(?=.*[A-Z]).*$/.test(password)){
+      toast.error('Your password should have at least one upperCase and lowerCase character')
+      return ;
+    }
+   
+    else if(password.length<6){
+    toast.error('password must be at least 6 character')
+    }
 
-  // }
+
+
+		createUser(email,password)
+    .then(result=>{
+      console.log(result.user);
+			updateProfile(result.user, {
+				displayName: name, photoURL: photo
+			}).then(() => {
+				
+			}).catch(() => {
+				
+			});
+			setUser(result.user)
+			toast.success("Sign Up successfully")
+    })
+    .catch(error=>{
+      console.error(error);
+			toast.error(error.message)
+    })
+	}
+
+
   return (
     <div className="flex justify-center item-center">
     
 
       <div  className="w-full  mb-14 max-w-md p-4 mt-10 rounded-lg shadow-xl bg-black bg-opacity-20 sm:p-8 ">
 	<h2 className="mb-3 text-3xl font-semibold text-center ">Create your account</h2>
-  <form   className="space-y-8 ">
+  <form onSubmit={handleSignUp} className="space-y-8 ">
 		<div className="space-y-4">
 			<div className="space-y-2">
 				<label htmlFor="name" className="block text-sm ">Name</label>
@@ -120,7 +91,7 @@ const Registration = ({showLogin}) => {
 		<button className="btn border-0 bg-blue-700 font-bold text-white rounded-lg  hover:scale-105 w-full">Register</button>
 	</form>
 	<p className="text-sm text-center mt-3 ">Already have an account?
-	<a onClick={()=>showLogin(true)}><p className="focus:underline hover:underline text-blue-700">log in here</p></a>
+	<span onClick={()=>showLogin(true)}  className="focus:underline hover:underline text-blue-700">log in here</span>
 	</p>
 
   

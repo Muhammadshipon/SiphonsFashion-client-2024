@@ -3,9 +3,13 @@
 // import { AuthContext } from "../Provider/AuthProvider";
 // import Swal from "sweetalert2";
 
+// import { useContext } from "react";
+// import { AuthContext } from "../firebase/provider/AuthProvider";
+
 
 const LogIn = ({showLogin}) => {
 
+  // const {createUser,signInWithGoogle,signInWithGithub,setUser,user	} = useContext(AuthContext);
   // const {logInUser,
   //       googleLogIn,
   //       githubLogIn} = useContext(AuthContext);
