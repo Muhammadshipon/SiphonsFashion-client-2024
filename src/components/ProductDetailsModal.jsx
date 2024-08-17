@@ -21,14 +21,14 @@ const ProductDetailsModal = ({setOpenModal,productDetails={},setIdForAddToCart})
   <div className="flex flex-col md:flex-row gap-8 px-5 py-8">
     <img src={img} alt={name} className="w-[300px] rounded-2xl"/>
     <div>
-   <h2 className="text-2xl font-bold text-orange-500 mb-3">{name}</h2>
+   <h2 className="text-2xl font-bold text-blue-700 mb-3">{name}</h2>
    <p>{shortDescription}</p>
    <div>
-    <p className="font-semibold text-orange-500">Category: <span className="font-normal text-black">{category}</span></p>
-    <p className="font-semibold text-orange-500">Stock: <span className="font-normal text-black">{stock}</span></p>
-    <p className="font-semibold text-orange-500">Seller: <span className="font-normal text-black">{seller}</span></p>
-    <p className="font-semibold text-orange-500">Discount: <span className="font-normal text-black">{discount*100}%</span></p>
-    <p className="font-semibold text-orange-500">Price: <span className="font-normal text-black">{price}$</span></p>
+    <p className="font-semibold text-blue-700">Category: <span className="font-normal text-black">{category}</span></p>
+    <p className="font-semibold text-blue-700">Stock: <span className="font-normal text-black">{stock}</span></p>
+    <p className="font-semibold text-blue-700">Seller: <span className="font-normal text-black">{seller}</span></p>
+    <p className="font-semibold text-blue-700">Discount: <span className="font-normal text-black">{discount*100}%</span></p>
+    <p className="font-semibold text-blue-700">Price: <span className="font-normal text-black">{price}$</span></p>
    </div>
    <div className="flex justify-around mt-4 mb-5 md:mb-0">
    <button onClick={()=>handleAddToCart(id)} className="btn btn-primary">Add to Cart</button>

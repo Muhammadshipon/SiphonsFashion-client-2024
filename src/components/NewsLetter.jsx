@@ -1,7 +1,10 @@
 import { useState } from "react";
+import LogIn from "./Login";
+import Registration from "./Register";
 
 
 const NewsLetter = () => {
+  const [showLogin,setShowLogin] = useState(true);
   const [email, setEmail] = useState('');
   const [error, setError] = useState('');
   const [submitted, setSubmitted] = useState(false);
@@ -26,9 +29,9 @@ const NewsLetter = () => {
 
   
   return (
-    <div className="flex justify-center items-center min-h-[500px]  p-4 bg-[url('https://cdn3.vectorstock.com/i/1000x1000/41/22/mens-wear-and-accessories-shapes-background-vector-12234122.jpg')] bg-fixed">
-    <div className="bg-orange-700 bg-opacity-80 shadow-lg rounded-lg p-8 max-w-md w-full ">
-      <h2 className="text-3xl font-inter font-bold mb-4 text-center text-blue-900 ">Subscribe to our <span className="text-gray-200 italic font-serif">Newsletter</span></h2>
+    <div className="flex justify-center items-center min-h-[500px]  p-4 bg-[url('https://img.pikbest.com/wp/202408/shopping-cart-interface-shimmering-abstract-against-blue-background-a-modern-take-on-e-commerce-design-3d-rendering_9779336.jpg!bw700')] bg-fixed ">
+    <div className="  max-w-md w-full ">
+      {/* <h2 className="text-3xl font-inter font-bold mb-4 text-center text-blue-900 ">Subscribe to our <span className="text-gray-200 italic font-serif">Newsletter</span></h2>
       {!submitted ? (
         <form onSubmit={handleSubmit}>
           <div className="mb-4">
@@ -61,7 +64,13 @@ const NewsLetter = () => {
         <div className="text-center">
           <p className="text-green-400 font-bold text-xl">Thank you for subscribing!</p>
         </div>
-      )}
+      )} */}
+      {
+        showLogin? <LogIn showLogin={setShowLogin}></LogIn>
+         : <Registration showLogin={setShowLogin}></Registration>
+      }
+    
+    
     </div>
   </div> 
   );
@@ -81,9 +90,9 @@ export default NewsLetter;
                 <img src='https://images.pexels.com/photos/3768005/pexels-photo-3768005.jpeg?cs=srgb&dl=pexels-willoworld-3768005.jpg&fm=jpg' className="max-w-[300px] md:max-w-md rounded-lg shadow-2xl" />
                 <div className="p-4">
                   
-                  <h1 className="text-3xl font-bold text-orange-500">Our Mission</h1>
+                  <h1 className="text-3xl font-bold text-blue-700">Our Mission</h1>
                   <p className="py-6">At <strong>AuraMart</strong>, our core values guide everything we do. We prioritize quality, ensuring that each item in our collection meets the highest standards of craftsmanship and durability.</p>
-                  <button className="btn btn-outline text-orange-500  hover:text-white">Read more</button>
+                  <button className="btn btn-outline text-blue-700  hover:text-white">Read more</button>
                 </div>
               </div>
             </div>

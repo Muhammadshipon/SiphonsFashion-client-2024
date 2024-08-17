@@ -4,7 +4,7 @@ const Footer = () => {
   return (
     <footer className="footer footer-center bg-base-content text-primary-content p-10">
     <aside>
-    <h1><a className="text-3xl font-bold text-white ">Aura<span className="text-orange-500 ">Mart</span></a></h1>
+    <h1><a className="text-3xl font-bold text-white ">Siphon's<span className="text-blue-700 ">Fashion</span></a></h1>
       <p className="font-bold">
         ACME Industries Ltd.
         <br />

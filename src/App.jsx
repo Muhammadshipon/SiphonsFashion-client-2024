@@ -12,6 +12,8 @@ import NewsLetter from './components/NewsLetter'
 import Footer from './components/Footer'
 import AOS from 'aos';
 import 'aos/dist/aos.css';
+import { MdShoppingCartCheckout } from 'react-icons/md'
+
 AOS.init();
 
 
@@ -27,7 +29,7 @@ function App() {
   const [deleteItemId,setDeleteItemId] =useState(null);
   const [productDetails,setProductDetails] = useState({});
   const [cartProducts,setCartProducts]= useState([]);
-
+  const totalItem = cartProducts?.reduce((sum,current)=>sum+current.quantity,0)
  
 
 
@@ -91,8 +93,20 @@ useEffect(() => {
 
 
   return (
-   <div className='font-inter'>
-                         {/* Add To Cart Component */}
+   <div className='font-inter bg-black text-white relative'>
+                        
+                                {/*Total Cart button  */}
+    <div className="drawer-content  fixed z-50 bottom-[5%] lg:left-[95%] md:left-[90%] left-[85%]">
+    <label htmlFor="my-drawer" className=" drawer-button ">
+      <div className="relative pr-8 top-4">
+      <MdShoppingCartCheckout className="text-blue-400 text-3xl" />
+     <div className="bg-white border-2 border-blue-500 w-7 h-7 rounded-full flex justify-center items-center relative -right-5 bottom-10 text-blue-700 "><span>{
+     totalItem
+     }</span></div>
+        </div> 
+      </label>
+  </div>                    
+                            {/* Add To Cart Component */}
     <Cart cartProducts={cartProducts} setDeleteItemId={setDeleteItemId}></Cart>
 
 
@@ -120,7 +134,7 @@ useEffect(() => {
    <section className='my-20 ' id='products'>
                                   {/* title  */}
   <div className="text-center max-w-[300px] md:max-w-[400px] mx-auto mb-10 mt-24">
-      <h4 className="text-orange-500 font-bold mb-2 text-lg md:text-2xl">Our Products</h4>
+      <h4 className="text-blue-700 font-bold mb-2 text-lg md:text-2xl">Our Products</h4>
       <h2 className="md:text-3xl text-xl py-3 font-bold text-gray-400 border-y-4 border-gray-400">We Make You Awesome</h2>
     </div>                           
          <div className='flex justify-center items-center'>
@@ -142,7 +156,7 @@ useEffect(() => {
         <section id='about'>
                           {/* title */}
         <div className="text-center max-w-[300px] md:max-w-[600px] mx-auto  mt-24">
-      <h4 className="text-orange-500  mb-2  md:text-2xl font-bold">About Us</h4>
+      <h4 className="text-blue-700  mb-2  md:text-2xl font-bold">About Us</h4>
       <h2 className="md:text-3xl text-lg py-3 font-bold text-gray-400 border-y-4 border-gray-400">Why People Choose AuraMart ?</h2>
     </div>
                        <AboutUs></AboutUs>
@@ -157,7 +171,7 @@ useEffect(() => {
 <section id='reviews' className='my-32'>
                                {/* title */}
    <div className="text-center max-w-[300px] md:max-w-[600px] mx-auto  mt-24">
-      <h4 className="text-orange-500  mb-2  md:text-2xl font-bold">Testimonials</h4>
+      <h4 className="text-blue-700  mb-2  md:text-2xl font-bold">Testimonials</h4>
       <h2 className="md:text-3xl text-lg py-3 font-bold text-gray-400 border-y-4 border-gray-400">What Our Client Think About Us?</h2>
     </div>
                             <Reviews></Reviews>
@@ -167,8 +181,6 @@ useEffect(() => {
                        {/* Newsletter Form Section and Simple Footer */}
    <section id='newsletter'>
    
-   
-
     <NewsLetter></NewsLetter>
     <Footer></Footer>
     

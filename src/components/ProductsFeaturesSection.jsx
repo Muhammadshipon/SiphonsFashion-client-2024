@@ -78,7 +78,7 @@ const handleRatingChange = (event) => {
   return (
     <div>
                      {/* Filter Input Section  */}
-      <div className=" flex flex-col md:flex-row items-center gap-5 justify-around mb-10">
+      {/* <div className=" flex flex-col md:flex-row items-center gap-5 justify-around mb-10">
         <select
           onChange={handleCategoryChange}
           className="px-4 py-2 border rounded"
@@ -116,7 +116,7 @@ const handleRatingChange = (event) => {
                        
        
 
-      </div>
+      </div> */}
 
                       
                      
@@ -138,11 +138,11 @@ const handleRatingChange = (event) => {
                          {/* Pagination Button  */} 
      <div className="text-center mt-10 " >
         <button onClick={prevPage} disabled={currentPage === 1}>
-        <GiPreviousButton className="text-3xl text-orange-500 mr-1 hover:scale-110" />
+        <GiPreviousButton className="text-3xl text-blue-700 mr-1 hover:scale-110" />
         </button>
        
         <button onClick={nextPage} disabled={currentPage === Math.ceil(products.length / productsPerPage)}>
-        <GiNextButton className="text-3xl text-orange-500 ml-1 hover:scale-110"/>
+        <GiNextButton className="text-3xl text-blue-700 ml-1 hover:scale-110"/>
         </button>
       </div>
     
