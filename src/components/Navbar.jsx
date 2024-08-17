@@ -1,9 +1,11 @@
 import PropTypes from 'prop-types';
+import { useContext } from 'react';
+import { AuthContext } from '../firebase/provider/AuthProvider';
 // import { MdShoppingCartCheckout } from "react-icons/md";
 
 
 const Navbar = ( ) => {
- 
+ const {user,signOutUser} = useContext(AuthContext);
   
   const link = <>
   <li  data-aos="fade-down"
@@ -37,10 +39,35 @@ const Navbar = ( ) => {
       </ul>
     </div>
                  
-           <div className='navbar-end pr-5'>
-            <a href='#newsletter' className='btn text-blue-700 '>Login</a>
-            </div>        
-  
+           {/* <div className=''>
+            
+            </div>         */}
+  <div className='navbar-end pr-5'>
+  {user ? 
+              <div className="dropdown dropdown-end" title={user?.displayName}>
+              <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
+                <div className="w-10 rounded-full">
+                  <img
+                    alt="Tailwind CSS Navbar component"
+                    src={user?.photoURL} />
+                </div>
+              </div>
+              <ul
+                tabIndex={0}
+                className="menu menu-sm dropdown-content bg-black rounded-box z-[1] mt-3 w-52 p-2 shadow ">
+              
+                <li onClick={()=>signOutUser()} className='text-white'><a>Logout</a></li>
+              </ul>
+            </div> :
+ 
+ <div className=''>
+  <a href='#newsletter' className='btn text-blue-700 '>Login</a>
+ </div>
+    }
+  </div>
+
+
+
 
   </div>
   );
