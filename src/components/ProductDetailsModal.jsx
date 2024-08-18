@@ -2,7 +2,12 @@ import PropTypes from 'prop-types';
 
 
 const ProductDetailsModal = ({setOpenModal,productDetails={},setIdForAddToCart}) => {
-  const {name, img, price,category,stock,discount,shortDescription,seller,id } = productDetails;
+  const {name, img, price,category,stock,discount,shortDescription,seller,id ,creationDate} = productDetails;
+  const formattedDate = new Date(creationDate).toLocaleDateString(undefined, {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric'
+  });
   const handleCloseModal=()=>{
     setOpenModal(false);
   }
@@ -17,18 +22,19 @@ const ProductDetailsModal = ({setOpenModal,productDetails={},setIdForAddToCart})
 };
   return (
     <div className="w-screen h-screen flex justify-center items-center fixed bg-[rgb(0,0,0,0.5)]  z-50">
-   <div className=" w-[300px] md:w-[700px]  bg-white rounded-3xl shadow-2xl">
+   <div className=" w-[300px] md:w-[700px]  bg-gray-900 text-gray-300 rounded-3xl shadow-2xl">
   <div className="flex flex-col md:flex-row gap-8 px-5 py-8">
     <img src={img} alt={name} className="w-[300px] rounded-2xl"/>
     <div>
    <h2 className="text-2xl font-bold text-blue-700 mb-3">{name}</h2>
    <p>{shortDescription}</p>
    <div>
-    <p className="font-semibold text-blue-700">Category: <span className="font-normal text-black">{category}</span></p>
-    <p className="font-semibold text-blue-700">Stock: <span className="font-normal text-black">{stock}</span></p>
-    <p className="font-semibold text-blue-700">Seller: <span className="font-normal text-black">{seller}</span></p>
-    <p className="font-semibold text-blue-700">Discount: <span className="font-normal text-black">{discount*100}%</span></p>
-    <p className="font-semibold text-blue-700">Price: <span className="font-normal text-black">{price}$</span></p>
+    <p className="font-semibold text-blue-700">Category: <span className="font-normal text-gray-300">{category}</span></p>
+    <p className="font-semibold text-blue-700">Stock: <span className="font-normal text-gray-300">{stock}</span></p>
+    <p className="font-semibold text-blue-700">Seller: <span className="font-normal text-gray-300">{seller}</span></p>
+    <p className="font-semibold text-blue-700">Discount: <span className="font-normal text-gray-300">{discount*100}%</span></p>
+    <p className="font-semibold text-blue-700">Price: <span className="font-normal text-gray-300">{price}$</span></p>
+    <p className="font-semibold text-blue-700">Price: <span className="font-normal text-gray-300">{formattedDate}</span></p>
    </div>
    <div className="flex justify-around mt-4 mb-5 md:mb-0">
    <button onClick={()=>handleAddToCart(id)} className="btn btn-primary">Add to Cart</button>

@@ -9,7 +9,7 @@ import ReviewCard from './ReviewCard';
 const Reviews = () => {
   const [reviews,setReviews] = useState([]);
   const getData = async()=>{
-    const res = await fetch('http://localhost:3000/reviews')
+    const res = await fetch('https://siphons-fashion-server-2024.vercel.app/reviews')
     const data = await res.json();
       setReviews(data)
   }

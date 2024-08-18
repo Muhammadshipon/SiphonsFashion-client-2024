@@ -1,76 +1,36 @@
 import PropTypes from "prop-types";
 import { useEffect, useState } from "react";
 import ProductCard from "./ProductCard";
-import { GiNextButton, GiPreviousButton } from "react-icons/gi";
-
+import axios from 'axios';
+import { FaSearch } from "react-icons/fa";
 
 
 const ProductsFeaturesSection = ({setOpenModal,setIdForDetails,setIdForAddToCart}) => {
-  const [products,setProducts]= useState([]);
-  const [currentPage, setCurrentPage] = useState(1);
-  const [categoryFilter, setCategoryFilter] = useState('');
-  const [priceRangeFilter, setPriceRangeFilter] = useState([0, 500]);
-  const [ratingFilter, setRatingFilter] = useState(0);
-  const productsPerPage = 9;
+  const [products, setProducts] = useState([]);
+  const [page, setPage] = useState(1);
+  const [totalPages, setTotalPages] = useState(1);
+  const [search, setSearch] = useState('');
+  const [category, setCategory] = useState('');
+  const [seller, setSeller] = useState('');
+  const [priceRange, setPriceRange] = useState('');
+  const [sort, setSort] = useState('');
 
                   // Fetch all products 
-  const getData = async()=>{
-    const res = await fetch('http://localhost:3000/products')
-    const data = await res.json();
-      setProducts(data)
-  }
+  useEffect(() => {
+    const fetchProducts = async () => {
+      try {
+        const { data } = await axios.get('https://siphons-fashion-server-2024.vercel.app/products', {
+          params: { page, search, category, seller, priceRange, sort },
+        });
+        setProducts(data.products);
+        setTotalPages(data.totalPages);
+      } catch (error) {
+        console.error('Error fetching products:', error);
+      }
+    };
 
-  useEffect(()=>{
-    getData();
-  },[])
-
-
-  let filteredProducts = products;
-if (categoryFilter) {
-  filteredProducts = filteredProducts.filter((product) => product.category === categoryFilter);
-}
-filteredProducts = filteredProducts.filter((product) => {
-  return product.price >= priceRangeFilter[0] && product.price <= priceRangeFilter[1];
-});
-filteredProducts = filteredProducts.filter((product) => product.ratings >= ratingFilter);
-
-
-
- //  Functions For Filtering 
- const handleCategoryChange = (event) => {
-  setCategoryFilter(event.target.value);
-  setCurrentPage(1);
-}; 
-
-const handlePriceRangeChange = (event) => {
-  const [min, max] = event.target.value.split('-').map(Number);
-  setPriceRangeFilter([min, max]);
-  setCurrentPage(1);
-};
-
-const handleRatingChange = (event) => {
-  setRatingFilter(Number(event.target.value));
-  setCurrentPage(1);
-};
-
-
-  
-
-  // Calculate the index of the first and last product on the current page
-  const indexOfLastProduct = currentPage * productsPerPage;
-  const indexOfFirstProduct = indexOfLastProduct - productsPerPage;
-   // Slice the products array to get the products for the current page
-  const currentProducts = filteredProducts.slice(indexOfFirstProduct,indexOfLastProduct);
-
-  // Function to handle next page
-  const nextPage = () => {
-    setCurrentPage((prevPage) => Math.min(prevPage + 1, Math.ceil(filteredProducts.length / productsPerPage)));
-  };
-   // Function to handle previous page
-  const prevPage = () => {
-    setCurrentPage((prevPage) => Math.max(prevPage - 1, 1));
-  };
-
+    fetchProducts();
+  }, [page, search, category, seller, priceRange, sort]);
 
 
  
@@ -78,45 +38,52 @@ const handleRatingChange = (event) => {
   return (
     <div>
                      {/* Filter Input Section  */}
-      {/* <div className=" flex flex-col md:flex-row items-center gap-5 justify-around mb-10">
-        <select
-          onChange={handleCategoryChange}
-          className="px-4 py-2 border rounded"
-        >
+    <div className="filter-sort flex flex-col lg:flex-row lg:justify-between lg:px-10 md:py-10 max-w-md md:w-full gap-8 items-center py-10 justify-center">
+       <div className="flex item-center relative">
+       <input
+          type="text"
+          placeholder="Search by name..."
+          value={search}
+          onChange={(e) => setSearch(e.target.value)}
+          className="text-black py-1 px-2 rounded-xl"
+        /> <span className="relative right-6 top-2"><FaSearch className="text-gray-700"></FaSearch></span>
+       </div>
+
+        <select className="bg-black text-white" onChange={(e) => setCategory(e.target.value)} value={category}>
           <option value="">All Categories</option>
-          <option value="Men's Sneaker">Men's Sneaker</option>
+          <option value="Cap">Cap</option>
           <option value="Men's Pants">Men's Pants</option>
+          <option value="Shoes">Case</option>
           <option value="Bag">Bag</option>
-          <option value="Earphones">Earphones</option>
+          <option value="Men's Sneaker">Men's Sneaker</option>
           <option value="Bottle">Bottle</option>
+          <option value="Electronics">Electronics</option>
+          <option value="Jacket">Jacket</option>
         </select>
 
-         <select
-          onChange={handlePriceRangeChange}
-          className="px-4 py-2 border rounded"
-        >
-          <option value="0-500">All Prices</option>
-          <option value="0-100">$0 - $100</option>
-          <option value="101-200">$101 - $200</option>
-          <option value="201-300">$201 - $300</option>
-          <option value="301-500">$301 - $500</option>
+        <select className="bg-black text-white" onChange={(e) => setSeller(e.target.value)} value={seller}>
+          <option value="">All Brands</option>
+          <option value="Adidas">Adidas</option>
+          <option value="Nike">Nike</option>
+          <option value="Puma">Puma</option>
         </select>
 
-        <select
-          onChange={handleRatingChange}
-          className="px-4 py-2 border rounded"
-        >
-          <option value="0">All Ratings</option>
-          <option value="5">5 Stars</option>
-          <option value="4">4 Stars & Up</option>
-          <option value="3">3 Stars & Up</option>
-          <option value="2">2 Stars & Up</option>
-          <option value="1">1 Star & Up</option>
-        </select> 
-                       
-       
+        <select className="bg-black text-white" onChange={(e) => setPriceRange(e.target.value)} value={priceRange}>
+          <option value="">All Prices</option>
+          <option value="0,50">$0 - $50</option>
+          <option value="51,100">$51 - $100</option>
+          <option value="101,200">$101 - $200</option>
+          <option value="201,300">$201 - $300</option>
+          <option value="301,500">$301 - $500</option>
+        </select>
 
-      </div> */}
+        <select className="bg-black text-white" onChange={(e) => setSort(e.target.value)} value={sort}>
+          <option value="">Sort By</option>
+          <option value="priceAsc">Price: Low to High</option>
+          <option value="priceDesc">Price: High to Low</option>
+          <option value="newest">Newest First</option>
+        </select>
+      </div>
 
                       
                      
@@ -125,10 +92,10 @@ const handleRatingChange = (event) => {
                        {/* Products Showcase section  */}
      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 px-5  transition-opacity duration-1000 ease-in-out"
       style={{ opacity: 0, transition: 'opacity 1s ease-in-out', animation: 'fadeIn 0.5s forwards' }}
-      key={currentPage}
+      key={page}
       >
-     {currentProducts.length===0? <p className="text-center my-10">No Product Available....</p>:
-        currentProducts?.map(product=><ProductCard key={product.id} 
+     {products?.length===0? <p className="text-center my-10">No Product Available....</p>:
+        products?.map(product=><ProductCard key={product.id} 
           product={product}
           setOpenModal={setOpenModal}
           setIdForAddToCart={setIdForAddToCart} 
@@ -136,13 +103,17 @@ const handleRatingChange = (event) => {
       }
      </div>
                          {/* Pagination Button  */} 
-     <div className="text-center mt-10 " >
-        <button onClick={prevPage} disabled={currentPage === 1}>
-        <GiPreviousButton className="text-3xl text-blue-700 mr-1 hover:scale-110" />
+    <div className="pagination   my-24 w-full text-center">
+                         <button
+    className="btn btn-primary text-blue-500 hover:bg-black bg-white disabled:cursor-not-allowed disabled:bg-gray-500 disabled:text-gray-300"
+    onClick={() => setPage(page - 1)}
+    disabled={page === 1}
+  >
+          Previous
         </button>
-       
-        <button onClick={nextPage} disabled={currentPage === Math.ceil(products.length / productsPerPage)}>
-        <GiNextButton className="text-3xl text-blue-700 ml-1 hover:scale-110"/>
+        <span className="mx-5">Page {page} of {totalPages}</span>
+        <button className="btn btn-primary text-blue-500 hover:bg-black bg-white disabled:cursor-not-allowed disabled:bg-gray-500 disabled:text-gray-300" onClick={() => setPage(page + 1)} disabled={page === totalPages}>
+          Next
         </button>
       </div>
     

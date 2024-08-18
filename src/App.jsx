@@ -37,8 +37,9 @@ function App() {
 
             //  Fetch data for add to cart 
 const getDataForAddToCart = async () => {
-  const res = await fetch('http://localhost:3000/products')
+  const res = await fetch('https://siphons-fashion-server-2024.vercel.app/all-products')
   const data = await res.json();
+  console.log(data);
   const filterForAddToCart = data.find(item => item.id === idForAddToCart);
 
   setCartProducts(previous => {
@@ -68,7 +69,7 @@ useEffect(() => {
 
                 // Fetch data for view product details 
   const getDataForProductsDetails = async()=>{
-    const res = await fetch('http://localhost:3000/products')
+    const res = await fetch('https://siphons-fashion-server-2024.vercel.app/all-products')
     const data = await res.json();
     
     const [filterProductDetails] = data.filter(item=>item.id === idForDetails)
