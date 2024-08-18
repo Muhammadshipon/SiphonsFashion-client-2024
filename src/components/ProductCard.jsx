@@ -1,10 +1,12 @@
 import PropTypes from 'prop-types'; // Import PropTypes
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { CiCirclePlus, CiSearch } from "react-icons/ci";
 import ReactStars from "react-rating-stars-component";
 import 'animate.css';
+import { AuthContext } from '../firebase/provider/AuthProvider';
 
 const ProductCard = ({product, setOpenModal, setIdForAddToCart, setIdForDetails}) => {
+  const {user} = useContext(AuthContext);
   const {name, img, price, category, ratings, id, discount } = product;
   const [isHover, setIsHover] = useState(false);
   const [showAnimation, setShowAnimation] = useState(false);
@@ -43,7 +45,7 @@ const ProductCard = ({product, setOpenModal, setIdForAddToCart, setIdForDetails}
       )}
       <div className="card bg-black shadow-xl hover:opacity-30 transition-opacity duration-300 ease-in-out h-full flex flex-col">
         <figure className="px-10 pt-10">
-          <img src={img} alt={name} className="rounded-xl" />
+          <img src={img} alt={name} className="rounded-xl h-[300px] w-full" />
         </figure>
         <div className="card-body items-center text-center">
           <h1 className="card-title">{name}</h1>
@@ -63,8 +65,15 @@ const ProductCard = ({product, setOpenModal, setIdForAddToCart, setIdForDetails}
       {isHover && (
         <div className="absolute hover:text-white rounded-2xl hover:bg-[rgb(0,0,0,0.4)] inset-0 flex justify-center items-center z-40 pointer-events-none">
           <div className="flex gap-4 pointer-events-auto">
-            <CiSearch onClick={() => handleShowDetail(id)} className="text-5xl hover:text-orange-400 hover:scale-125" />
-            <CiCirclePlus onClick={() => handleAddToCart(id)} className="text-5xl hover:text-orange-400 hover:scale-125" />
+            {
+              user?<> <CiSearch onClick={() => handleShowDetail(id)} className="text-5xl hover:text-orange-400 hover:scale-125" />
+            <CiCirclePlus onClick={() => handleAddToCart(id)} className="text-5xl hover:text-orange-400 hover:scale-125" /></>
+            : <>
+            <a href="#newsletter"><CiSearch className="text-5xl hover:text-orange-400 hover:scale-125" /></a>
+            <a href="#newsletter"><CiCirclePlus className="text-5xl hover:text-orange-400 hover:scale-125" /></a>
+            </>
+            }
+           
 
             {showAnimation && (
               <div className="absolute left-[55%] top-[35%] text-white text-2xl font-bold animate__animated animate__fadeInUp">

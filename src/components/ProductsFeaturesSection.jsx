@@ -15,7 +15,7 @@ const ProductsFeaturesSection = ({setOpenModal,setIdForDetails,setIdForAddToCart
 
                   // Fetch all products 
   const getData = async()=>{
-    const res = await fetch('/products.json')
+    const res = await fetch('http://localhost:3000/products')
     const data = await res.json();
       setProducts(data)
   }
